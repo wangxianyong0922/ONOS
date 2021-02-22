@@ -1,0 +1,381 @@
+pkg_info {
+  arch: "v1model"
+}
+tables {
+  preamble {
+    id: 46431377
+    name: "ingress.t_l2_fwd"
+    alias: "t_l2_fwd"
+  }
+  match_fields {
+    id: 1
+    name: "standard_metadata.ingress_port"
+    bitwidth: 9
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 2
+    name: "ethernet.dstAddr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 3
+    name: "ethernet.srcAddr"
+    bitwidth: 48
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 4
+    name: "ethernet.etherType"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  action_refs {
+    id: 23860038
+  }
+  action_refs {
+    id: 23623778
+  }
+  action_refs {
+    id: 19143480
+  }
+  action_refs {
+    id: 21257015
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 43258743
+    name: "count_table"
+    alias: "count_table"
+  }
+  match_fields {
+    id: 1
+    name: "components[0].$valid$"
+    bitwidth: 1
+    match_type: EXACT
+  }
+  match_fields {
+    id: 2
+    name: "components[1].$valid$"
+    bitwidth: 1
+    match_type: EXACT
+  }
+  match_fields {
+    id: 3
+    name: "components[2].$valid$"
+    bitwidth: 1
+    match_type: EXACT
+  }
+  match_fields {
+    id: 4
+    name: "components[3].$valid$"
+    bitwidth: 1
+    match_type: EXACT
+  }
+  match_fields {
+    id: 5
+    name: "components[4].$valid$"
+    bitwidth: 1
+    match_type: EXACT
+  }
+  action_refs {
+    id: 29434640
+  }
+  action_refs {
+    id: 19143480
+  }
+  action_refs {
+    id: 21257015
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 5
+}
+tables {
+  preamble {
+    id: 41308811
+    name: "fib_table"
+    alias: "fib_table"
+  }
+  match_fields {
+    id: 1
+    name: "name_metadata.components"
+    bitwidth: 8
+    match_type: EXACT
+  }
+  match_fields {
+    id: 2
+    name: "comp_metadata.c1"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 3
+    name: "comp_metadata.c2"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 4
+    name: "comp_metadata.c3"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 5
+    name: "comp_metadata.c4"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  match_fields {
+    id: 6
+    name: "name_metadata.name_hash"
+    bitwidth: 16
+    match_type: TERNARY
+  }
+  action_refs {
+    id: 24054010
+  }
+  action_refs {
+    id: 19143480
+  }
+  action_refs {
+    id: 21257015
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1024
+}
+tables {
+  preamble {
+    id: 35075599
+    name: "hashName_table"
+    alias: "hashName_table"
+  }
+  action_refs {
+    id: 28501043
+  }
+  action_refs {
+    id: 21257015
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 1
+}
+tables {
+  preamble {
+    id: 37905772
+    name: "pit_table"
+    alias: "pit_table"
+  }
+  match_fields {
+    id: 1
+    name: "flow_metadata.packetType"
+    bitwidth: 8
+    match_type: EXACT
+  }
+  action_refs {
+    id: 21504550
+  }
+  action_refs {
+    id: 22309058
+  }
+  action_refs {
+    id: 21257015
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 2
+}
+tables {
+  preamble {
+    id: 40253512
+    name: "routeData_table"
+    alias: "routeData_table"
+  }
+  match_fields {
+    id: 1
+    name: "flow_metadata.isInPIT"
+    bitwidth: 16
+    match_type: EXACT
+  }
+  action_refs {
+    id: 23860038
+  }
+  action_refs {
+    id: 19143480
+  }
+  action_refs {
+    id: 21257015
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 20
+}
+tables {
+  preamble {
+    id: 48472284
+    name: "updatePit_table"
+    alias: "updatePit_table"
+  }
+  match_fields {
+    id: 1
+    name: "flow_metadata.hasFIBentry"
+    bitwidth: 8
+    match_type: EXACT
+  }
+  action_refs {
+    id: 28748912
+  }
+  action_refs {
+    id: 19143480
+  }
+  action_refs {
+    id: 21257015
+    annotations: "@defaultonly"
+    scope: DEFAULT_ONLY
+  }
+  size: 2
+}
+actions {
+  preamble {
+    id: 21257015
+    name: "NoAction"
+    alias: "NoAction"
+    annotations: "@noWarnUnused"
+  }
+}
+actions {
+  preamble {
+    id: 29434640
+    name: "storeNumOfComponents"
+    alias: "storeNumOfComponents"
+  }
+  params {
+    id: 1
+    name: "total"
+    bitwidth: 8
+  }
+}
+actions {
+  preamble {
+    id: 19143480
+    name: "_drop"
+    alias: "_drop"
+  }
+}
+actions {
+  preamble {
+    id: 24054010
+    name: "set_egr"
+    alias: "set_egr"
+  }
+  params {
+    id: 1
+    name: "egress_spec"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 28501043
+    name: "computeStoreTablesIndex"
+    alias: "computeStoreTablesIndex"
+  }
+}
+actions {
+  preamble {
+    id: 21504550
+    name: "readPitEntry"
+    alias: "readPitEntry"
+  }
+}
+actions {
+  preamble {
+    id: 22309058
+    name: "cleanPitEntry"
+    alias: "cleanPitEntry"
+  }
+}
+actions {
+  preamble {
+    id: 23860038
+    name: "setOutputIface"
+    alias: "setOutputIface"
+  }
+  params {
+    id: 1
+    name: "out_iface"
+    bitwidth: 9
+  }
+}
+actions {
+  preamble {
+    id: 28748912
+    name: "updatePit_entry"
+    alias: "updatePit_entry"
+  }
+}
+actions {
+  preamble {
+    id: 23623778
+    name: "ingress.send_to_cpu"
+    alias: "send_to_cpu"
+  }
+}
+controller_packet_metadata {
+  preamble {
+    id: 81826293
+    name: "packet_in"
+    alias: "packet_in"
+    annotations: "@controller_header(\"packet_in\")"
+  }
+  metadata {
+    id: 1
+    name: "ingress_port"
+    bitwidth: 9
+  }
+  metadata {
+    id: 2
+    name: "_padding"
+    bitwidth: 7
+  }
+}
+controller_packet_metadata {
+  preamble {
+    id: 76689799
+    name: "packet_out"
+    alias: "packet_out"
+    annotations: "@controller_header(\"packet_out\")"
+  }
+  metadata {
+    id: 1
+    name: "egress_port"
+    bitwidth: 9
+  }
+  metadata {
+    id: 2
+    name: "_padding"
+    bitwidth: 7
+  }
+}
+registers {
+  preamble {
+    id: 384757967
+    name: "pit_r"
+    alias: "pit_r"
+  }
+  type_spec {
+    bitstring {
+      bit {
+        bitwidth: 16
+      }
+    }
+  }
+  size: 65536
+}
+type_info {
+}

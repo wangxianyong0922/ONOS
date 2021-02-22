@@ -1,0 +1,27 @@
+COMPILE_DEPS = CORE_DEPS + [
+    "//core/common:onos-core-common",
+    "//protocols/p4runtime/model:onos-protocols-p4runtime-model",
+    "//protocols/p4runtime/api:onos-protocols-p4runtime-api",
+    "//apps/wxyNDNApp/ndnpipeconf:onos-apps-wxyNDNApp-ndnpipeconf",
+]
+
+osgi_jar(
+    suppress_checkstyle = True,
+    deps = COMPILE_DEPS,
+)
+
+BUNDLES = [
+    "//apps/wxyNDNApp/ndnapp:onos-apps-wxyNDNApp-ndnapp",
+]
+
+onos_app(
+    app_name = "org.onosproject.wxyNDNApp.MyNDNApp",
+    category = "Traffic Engineering",
+    description = "Provides forwarding between each pair of hosts via mixmodel protocol",
+    included_bundles = BUNDLES,
+    required_apps = [
+        "org.onosproject.wxyNDNApp.ndnpipeconf",
+    ],
+    title = "MyNDN Demo App",
+    url = "http://onosproject.org",
+)
