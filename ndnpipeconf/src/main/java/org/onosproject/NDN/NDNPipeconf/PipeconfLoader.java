@@ -30,12 +30,14 @@ public final class PipeconfLoader {
     //private static final String P4INFO_PATH = "/p4info.txt";
     //private static final String BMV2_JSON_PATH = "/bmv2.json";
 
-    private static final URL P4INFO_URL = PipeconfLoader.class.getResource("/p4info.txt");
-    private static final URL BMV2_JSON_URL = PipeconfLoader.class.getResource("/bmv2.json");
+    //private static final URL P4INFO_URL = PipeconfLoader.class.getResource("/p4info.txt");
+    //private static final URL BMV2_JSON_URL = PipeconfLoader.class.getResource("/bmv2.json");
+
+    private static final URL P4INFO_URL = PipeconfLoader.class.getResource("/ndn_router-p4-16.p4.p4info.txt");
+    private static final URL BMV2_JSON_URL = PipeconfLoader.class.getResource("/ndn_router-p4-16.json");
 
     //private static final URL P4INFO_URL = PipeconfLoader.class.getResource("/wxymain.p4.p4info.txt");
     //private static final URL BMV2_JSON_URL = PipeconfLoader.class.getResource("/wxymain.json");
-
     @Reference(cardinality = ReferenceCardinality.MANDATORY)
     private PiPipeconfService pipeconfService;
 

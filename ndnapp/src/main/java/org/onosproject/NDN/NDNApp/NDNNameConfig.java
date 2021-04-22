@@ -12,12 +12,13 @@ public class NDNNameConfig extends Config<ApplicationId> {
     private static final String ONE = "one";
     private static final String TWO = "two";
     private static final String THREE = "three";
+    private static final String INFO = "info";
     //---
 
 
     @Override
     public boolean isValid() {
-        return hasOnlyFields(NAME,ONE,TWO,THREE) && isString(ONE,OPTIONAL) && isString(TWO,OPTIONAL) && isString(THREE,OPTIONAL);
+        return hasOnlyFields(NAME,ONE,TWO,THREE,INFO) && isString(ONE,OPTIONAL) && isString(TWO,OPTIONAL) && isString(THREE,OPTIONAL)&& isString(INFO,OPTIONAL);
     }
 
     public String name(){
@@ -37,6 +38,11 @@ public class NDNNameConfig extends Config<ApplicationId> {
 
     public String three(){
         String s = get(THREE,"three默认值");
+        return s;
+    }
+
+    public String info(){
+        String s = get(INFO,"info默认值");
         return s;
     }
 

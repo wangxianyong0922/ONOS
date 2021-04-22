@@ -123,8 +123,8 @@ public class Utils {
     public static FlowRule buildFlowRule(DeviceId switchId, ApplicationId appId,
                                          String tableId, PiCriterion piCriterion,
                                          PiTableAction piAction) {
-        log.info("---------PiTableId.of(tableId)获取到" +
-                "的fib_table表的id为：{}，但在p4info中该表的id为：{}---------",PiTableId.of(tableId),"33575563");
+        /*log.info("---------PiTableId.of(tableId)获取到" +
+                "的fib_table表的id为：{}，但在p4info中该表的id为：{}---------",PiTableId.of(tableId),"33575563");*/
         return DefaultFlowRule.builder()
                 .forDevice(switchId)
                 .forTable(PiTableId.of(tableId))
@@ -133,6 +133,24 @@ public class Utils {
                 .makePermanent()
                 .withSelector(DefaultTrafficSelector.builder()
                         .matchPi(piCriterion).build())
+                .withTreatment(DefaultTrafficTreatment.builder()
+                        .piTableAction(piAction).build())
+                .build();
+    }
+
+    /**
+     * 用于测试的辅助类：用于不带匹配域的流表项的生成
+     * */
+    public static FlowRule buildFlowRuleWithoutCriterion(DeviceId switchId, ApplicationId appId,
+                                         String tableId, PiTableAction piAction) {
+        /*log.info("---------PiTableId.of(tableId)获取到" +
+                "的fib_table表的id为：{}，但在p4info中该表的id为：{}---------",PiTableId.of(tableId),"33575563");*/
+        return DefaultFlowRule.builder()
+                .forDevice(switchId)
+                .forTable(PiTableId.of(tableId))
+                .fromApp(appId)
+                .withPriority(DEFAULT_FLOW_RULE_PRIORITY)
+                .makePermanent()
                 .withTreatment(DefaultTrafficTreatment.builder()
                         .piTableAction(piAction).build())
                 .build();
